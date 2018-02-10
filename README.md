@@ -2,7 +2,7 @@
 
 The overall goal of this exercice is to display the weather of one city for instance with the OpenWeatherMap API and Vue.js.
 
-![WeatherApp](Weather_Example.png "Extract of the website openweather.org")
+![WeatherApp](./img/Weather_Example.png "Extract of the website openweather.org")
 
 ## Prerequise
 Notions in vue.js, Javascript, HTML.
@@ -99,7 +99,7 @@ You can use the differents directives such as :
 
 - Go to https://openweathermap.org/ and sign-up and sign-in (to get the key app)
 
-![OpenWeather](API_Key.png "Extract of the website openweather.org")
+![OpenWeather](./img/API_Key.png "Extract of the website openweather.org")
 
 To get access to weather API you need an API key whatever account you choose.
 
