@@ -123,3 +123,18 @@ API Call : http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID={APIK
 | PUT        |      Update/Replace     |
 | PATCH        |      Update/Modify     |
 | DELETE        |      Delete     |
+
+## Example
+````Javascript
+{
+  // GET /someUrl
+  this.$http.get('/someUrl').then(response => {
+
+    // get body data
+    this.someData = response.body;
+
+  }, response => {
+    // error callback
+  });
+}`
+````
