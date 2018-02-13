@@ -76,24 +76,16 @@ new Vue ({
 ```
 In this file, create a function to get the data of the weather via the API.
 
-## App's form & Components (Vue, JQuery) 
+## App's form & Components (Vue, Vue-Resource) 
 
-In your file HTML, call your file ".js" and the library jquery.
+In your file HTML, call your file ".js" and the library vue-resource (in order to use the GET/POST/PUT function with the API).
 
 ````HTML
 <script src="app.js" type="text/javascript" charset="utf-8"></script>
 
-<script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js"></script>
 ````
 
-## Use vue.js tags to the form
-
-You can use the differents directives such as :
-- v-on
-- v-if / v-else
-- v-for
-- v-model
-- ...
 
 ## OpenWeatherMap
 
@@ -138,3 +130,58 @@ API Call : http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID={APIK
   });
 }`
 ````
+
+## Solution
+https://jsfiddle.net/jlomelsamsys/tdnu0ny6/2/
+### JS file
+````Javascript
+var weather = new Vue({
+        el: '#weather',
+        data: {
+            dataWeather: []
+        },
+        mounted: function () {
+            this.getDataWeather();
+        },        
+        methods: {
+            getDataWeather: function () {
+                this.$http.get('https://api.openweathermap.org/data/2.5/weather?lon=3.066667&lat=50.633333&APPID=MYAPPID&units=metric&lang=fr')
+                          .then(response => {
+                             this.dataWeather = response.data
+                          })
+            }
+        }
+    });
+````
+
+Notes :
+
+(1) "mounted" is called after the instance has been mounted. So here, it will call the methods getDataWeather when you will launch your app.
+
+(2) Don't forget to change "MYAPPID" in the url with your APIKEY.
+
+(3) You can change the value of lon (lontitude) and lat (latitude) in your url. The coordonates are for Lille in this example.
+
+### HTML File
+
+````HTML
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js"></script>
+
+
+
+<div id="weather">
+    {{ dataWeather }}
+    
+    <ul>
+        <li>Ville : {{ dataWeather.name }}</li>
+        <li>Temperature : {{ dataWeather.main.temp }} °C</li>
+        <li>Humidity : {{ dataWeather.main.humidity }} % </li>
+        <li>Temps : {{ dataWeather.weather[0].description }}</li>     
+    </ul>
+</div> 
+````
+Note :
+{{ dataWeather }} will display the entire JSON.
+
+**Now, it's up to you to have a good template in your HTML file (with bootstrap for example) !**
